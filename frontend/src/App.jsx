@@ -3,6 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
 import Navbar from "./components/partials/Navbar";
 import Signin from "./components/Signin";
+import UserPage from "./components/UserPage";
+import ChangePassword from "./components/ChangePassword";
+import ChangeDetails from "./components/ChangeDetails";
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/user" element={<UserPage />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/changedetails" element={<ChangeDetails/>} />
         </Routes>
       </div>
     </div>

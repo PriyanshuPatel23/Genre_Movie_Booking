@@ -30,22 +30,21 @@ class userService {
       const token = jwt.sign({ id: user.id }, JWT_SECRET, {
         expiresIn: "30d",
       });
-      console.log(token);
 
-      return { token };
+      return { token, user };
     } catch (error) {
       console.log(error);
     }
   }
 
-  async changePassword(userid, password, newPassword) {
+  async changePassword(userid, currentpassword, newPassword) {
     try {
       const user = await userrepository.findUser(userid);
       if (!user) {
         throw new Error("User not found");
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(currentpassword, user.password);
       if (!isMatch) {
         throw new Error("Incorrect current password");
       }
@@ -57,6 +56,18 @@ class userService {
       );
 
       return updatedUser;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUserById(id) {
+    try {
+      const user = await userrepository.findUser(id);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return user;
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -6,18 +7,18 @@ function Navbar() {
       <nav className="flex justify-between items-center p-8">
         <h1 className="text-[#6556CD] text-3xl font-semibold">Genre.</h1>
         <div className="hidden space-x-10 sm:flex">
-          <a href="" className="text-white hover:text-[#6556CD] text-xl">
+          <Link to="/" className="text-white hover:text-[#6556CD] text-xl">
             Home
-          </a>
-          <a href="" className="text-white hover:text-[#6556CD] text-xl">
+          </Link>
+          <Link to="/movies" className="text-white hover:text-[#6556CD] text-xl">
             Movies
-          </a>
-          <a href="" className="text-white hover:text-[#6556CD] text-xl">
+          </Link>
+          <Link to="/bookings" className="text-white hover:text-[#6556CD] text-xl">
             Bookings
-          </a>
-          <a href="" className="text-white hover:text-[#6556CD] text-xl">
+          </Link>
+          <Link to="/user" className="text-white hover:text-[#6556CD] text-xl">
             User
-          </a>
+          </Link>
         </div>
       </nav>
     </div>

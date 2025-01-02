@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Form from "./partials/Form";
-import axios from "../utils/axios"
+import axios from "../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,8 +17,9 @@ function Signin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signin data:", formData);
-    await axios.post('/login', formData)
+    const response = await axios.post("/login", formData);
+    localStorage.setItem("token", response.data.data.token);
+    navigate("/user");
   };
 
   const fields = [

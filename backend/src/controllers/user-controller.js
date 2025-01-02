@@ -26,6 +26,25 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  try {
+    const user = await userservice.getUserById(req.user.id);
+    return res.status(200).json({
+      message: "User fetched successfully",
+      data: user,
+      success: true,
+      err: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "User not fetched successfully",
+      data: {},
+      success: false,
+      err: error,
+    });
+  }
+};
+
 const login = async (req, res) => {
   try {
     const response = await userservice.login({
@@ -101,4 +120,5 @@ module.exports = {
   login,
   updatePassword,
   updateUser,
+  getUserById,
 };
