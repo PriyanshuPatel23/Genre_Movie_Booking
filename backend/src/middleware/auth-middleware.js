@@ -1,24 +1,31 @@
-const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config/server-config");
+const passport = require("passport");
 
 const authMiddleware = (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    if (!token) {
-      return res.status(401).json({
-        message: "Token is invalid or missing",
-      });
+  passport.authenticate("jwt", (err, user) => {
+    if (err) {
+      return res.status(401).json({ message: "Unauthorized" });
     }
-
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
+    req.user = user;
     next();
-  } catch (error) {
-    console.log(error);
-    return res.status(401).json({
-      message: "Token is not available",
-    });
-  }
+  });
+
+  // try {
+  //   const token = req.headers.authorization.split(" ")[1];
+  //   if (!token) {
+  //     return res.status(401).json({
+  //       message: "Token is invalid or missing",
+  //     });
+  //   }
+
+  //   const decoded = jwt.verify(token, JWT_SECRET);
+  //   req.user = decoded;
+  //   next();
+  // } catch (error) {
+  //   console.log(error);
+  //   return res.status(401).json({
+  //     message: "Token is not available",
+  //   });
+  // }
 };
 
 const roleMiddleware = (allowedRoles) => (req, res, next) => {
@@ -37,4 +44,4 @@ const roleMiddleware = (allowedRoles) => (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+module.exports = { authMiddleware, roleMiddleware };

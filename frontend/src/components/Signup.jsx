@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../utils/axios"
+import axios from "../utils/axios";
 import Form from "./partials/Form";
 
 function Signup() {
@@ -17,7 +17,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Signup data:", formData);
-    await axios.post('/signup', formData)
+    await axios.post("/signup", formData);
   };
 
   const fields = [

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Form({ title, fields, buttonText, onSubmit }) {
   return (
@@ -30,15 +30,25 @@ function Form({ title, fields, buttonText, onSubmit }) {
           {title === "Signin" ? (
             <>
               Not in yet?{" "}
-              <Link to={'/signup'} className="text-blue-500 cursor-pointer">Signup!!</Link>
+              <Link to={"/signup"} className="text-blue-500 cursor-pointer">
+                Signup!!
+              </Link>
             </>
           ) : (
             <>
               Already a user?{" "}
-              <Link to={'/signin'} className="text-blue-500 cursor-pointer">Signin!!</Link>
+              <Link to={"/signin"} className="text-blue-500 cursor-pointer">
+                Signin!!
+              </Link>
             </>
           )}
         </p>{" "}
+        <p>
+          Forgot your password?{" "}
+          <Link to={"/request-password-reset"} className="text-blue-500 cursor-pointer">
+            Click here to reset it.
+          </Link>{" "}
+        </p>
       </form>
     </div>
   );

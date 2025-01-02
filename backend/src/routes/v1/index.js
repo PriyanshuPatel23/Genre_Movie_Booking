@@ -1,16 +1,17 @@
 const express = require("express");
+
 const {
-  createUser,
+  signup,
   login,
   updatePassword,
   updateUser,
   getUserById,
 } = require("../../controllers/user-controller");
-const authMiddleware = require("../../middleware/auth-middleware");
+const { authMiddleware } = require("../../middleware/auth-middleware");
 
 const router = express.Router();
 
-router.post("/signup", createUser);
+router.post("/signup", signup);
 router.post("/login", login);
 router.put("/changePassword", authMiddleware, updatePassword);
 router.put("/changeData", authMiddleware, updateUser);

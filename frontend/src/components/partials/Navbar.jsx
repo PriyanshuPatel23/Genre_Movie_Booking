@@ -10,10 +10,16 @@ function Navbar() {
           <Link to="/" className="text-white hover:text-[#6556CD] text-xl">
             Home
           </Link>
-          <Link to="/movies" className="text-white hover:text-[#6556CD] text-xl">
+          <Link
+            to="/movies"
+            className="text-white hover:text-[#6556CD] text-xl"
+          >
             Movies
           </Link>
-          <Link to="/bookings" className="text-white hover:text-[#6556CD] text-xl">
+          <Link
+            to="/bookings"
+            className="text-white hover:text-[#6556CD] text-xl"
+          >
             Bookings
           </Link>
           <Link to="/user" className="text-white hover:text-[#6556CD] text-xl">

@@ -43,7 +43,9 @@ const UserPage = () => {
               <p className="text-lg font-medium">{user.name}</p>
             </div>
             <button className="text-white hover:text-gray-300">
-            <Link to='/changedetails'><FaUserEdit size={20} /></Link>
+              <Link to="/changedetails">
+                <FaUserEdit size={20} />
+              </Link>
             </button>
           </div>
           {/* Email */}
@@ -60,7 +62,9 @@ const UserPage = () => {
               <p className="text-lg font-medium">********</p>
             </div>
             <button className="text-white hover:text-gray-300">
-              <Link to='/changepassword'><FaKey size={20} /></Link>
+              <Link to="/changepassword">
+                <FaKey size={20} />
+              </Link>
             </button>
           </div>
         </div>

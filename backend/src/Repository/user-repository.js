@@ -1,7 +1,7 @@
 const User = require("../models/user-model");
 
 class userRepository {
-  async createUser(userdata) {
+  async signup(userdata) {
     try {
       const result = await User.create(userdata);
       return result;

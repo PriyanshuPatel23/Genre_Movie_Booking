@@ -2,9 +2,9 @@ const userService = require("../services/user-service");
 
 const userservice = new userService();
 
-const createUser = async (req, res) => {
+const signup = async (req, res) => {
   try {
-    const user = await userservice.createUser({
+    const user = await userservice.signup({
       email: req.body.email,
       password: req.body.password,
       name: req.body.name,
@@ -21,25 +21,6 @@ const createUser = async (req, res) => {
       message: "User not created successfully",
       data: {},
       success: true,
-      err: error,
-    });
-  }
-};
-
-const getUserById = async (req, res) => {
-  try {
-    const user = await userservice.getUserById(req.user.id);
-    return res.status(200).json({
-      message: "User fetched successfully",
-      data: user,
-      success: true,
-      err: {},
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: "User not fetched successfully",
-      data: {},
-      success: false,
       err: error,
     });
   }
@@ -62,6 +43,25 @@ const login = async (req, res) => {
       message: "User not logged in successfully",
       data: {},
       success: true,
+      err: error,
+    });
+  }
+};
+
+const getUserById = async (req, res) => {
+  try {
+    const user = await userservice.getUserById(req.user.id);
+    return res.status(200).json({
+      message: "User fetched successfully",
+      data: user,
+      success: true,
+      err: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "User not fetched successfully",
+      data: {},
+      success: false,
       err: error,
     });
   }
@@ -116,7 +116,7 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = {
-  createUser,
+  signup,
   login,
   updatePassword,
   updateUser,

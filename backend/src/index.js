@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyparser = require("body-parser");
+const cors = require("cors");
+const passport = require("passport");
+
 const connect = require("./config/db-config");
 const apiroutes = require("./routes/index");
 const { PORT } = require("./config/server-config");
-const cors = require("cors");
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(passport.initialize());
 
 app.use(express.json());
 

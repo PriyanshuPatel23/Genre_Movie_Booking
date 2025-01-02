@@ -6,10 +6,10 @@ const { SALT, JWT_SECRET } = require("../config/server-config");
 const userrepository = new userRepository();
 
 class userService {
-  async createUser(data) {
+  async signup(data) {
     try {
       data.password = await bcrypt.hash(data.password, SALT);
-      const result = await userrepository.createUser(data);
+      const result = await userrepository.signup(data);
       return result;
     } catch (error) {
       console.log(error);

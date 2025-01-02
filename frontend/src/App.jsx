@@ -7,6 +7,7 @@ import UserPage from "./components/UserPage";
 import ChangePassword from "./components/ChangePassword";
 import ChangeDetails from "./components/ChangeDetails";
 
+
 function App() {
   return (
     <div className="w-screen h-screen bg-[#1F1E24] flex flex-col">
@@ -17,7 +18,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/changepassword" element={<ChangePassword />} />
-          <Route path="/changedetails" element={<ChangeDetails/>} />
+          <Route path="/changedetails" element={<ChangeDetails />} />
         </Routes>
       </div>
     </div>

@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     role: { type: String, enum: ["admin", "user"], default: "user" },
+    resetToken: { type: String },
+    resetTokenExpiry: { type: Date },
   },
   { timestamps: true }
 );
