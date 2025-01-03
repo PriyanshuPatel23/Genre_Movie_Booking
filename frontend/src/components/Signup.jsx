@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "../utils/axios";
 import Form from "./partials/Form";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +20,7 @@ function Signup() {
     e.preventDefault();
     console.log("Signup data:", formData);
     await axios.post("/signup", formData);
+    navigate("/user");
   };
 
   const fields = [

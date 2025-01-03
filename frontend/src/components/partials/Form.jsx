@@ -8,7 +8,12 @@ function Form({ title, fields, buttonText, onSubmit }) {
         onSubmit={onSubmit}
         className="bg-white text-white p-8 rounded-md shadow-lg space-y-4 w-96"
       >
-        <h2 className="text-2xl font-semibold text-[#6556CD]">{title}</h2>
+        {/* Title */}
+        <h2 className="text-2xl font-semibold text-[#6556CD] text-center">
+          {title}
+        </h2>
+
+        {/* Input Fields */}
         {fields.map((field, index) => (
           <input
             key={index}
@@ -20,35 +25,43 @@ function Form({ title, fields, buttonText, onSubmit }) {
             className="w-full p-2 bg-[#2A2933] text-white rounded-md"
           />
         ))}
+
+        {/* Submit Button */}
         <button
           type="submit"
           className="w-full p-2 bg-[#6556CD] text-white rounded-md hover:bg-[#5048a5]"
         >
           {buttonText}
         </button>
-        <p className="text-black">
+
+        {/* Conditional Links */}
+        <p className="text-black text-center">
           {title === "Signin" ? (
             <>
-              Not in yet?{" "}
-              <Link to={"/signup"} className="text-blue-500 cursor-pointer">
-                Signup!!
+              Not registered yet?{" "}
+              <Link to="/signup" className="text-blue-500 cursor-pointer">
+                Signup here!
               </Link>
             </>
           ) : (
             <>
               Already a user?{" "}
-              <Link to={"/signin"} className="text-blue-500 cursor-pointer">
-                Signin!!
+              <Link to="/signin" className="text-blue-500 cursor-pointer">
+                Signin here!
               </Link>
             </>
           )}
-        </p>{" "}
-        <p>
-          Forgot your password?{" "}
-          <Link to={"/request-password-reset"} className="text-blue-500 cursor-pointer">
-            Click here to reset it.
-          </Link>{" "}
         </p>
+
+        {/* Forgot Password Link */}
+        {title === "Signin" && (
+          <p className="text-black text-center">
+            Forgot your password?{" "}
+            <Link to="/requestmail" className="text-blue-500 cursor-pointer">
+              Click here to reset it.
+            </Link>
+          </p>
+        )}
       </form>
     </div>
   );

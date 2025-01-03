@@ -19,6 +19,18 @@ class userRepository {
     }
   }
 
+  async updateResetToken(userid, resetToken, resetTokenExpiry) {
+    try {
+      const result = await User.findByIdAndUpdate(userid, {
+        resetToken,
+        resetTokenExpiry,
+      });
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async updatePassword(userId, newPassword) {
     try {
       const result = await User.findByIdAndUpdate(

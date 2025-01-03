@@ -6,8 +6,11 @@ const passport = require("passport");
 const connect = require("./config/db-config");
 const apiroutes = require("./routes/index");
 const { PORT } = require("./config/server-config");
+const PassportAuth = require("./config/jwt-middleware");
 
 const app = express();
+
+PassportAuth(passport);
 
 app.use(
   cors({

@@ -30,7 +30,7 @@ const UserPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1F1E24] text-white flex flex-col items-center mt-[10%] py-8 px-4 sm:px-8">
+    <div className="h-screen bg-[#1F1E24] text-white flex flex-col items-center mt-[5%] py-8 px-4 sm:px-8">
       <div className="w-full max-w-md bg-[#6556CD] rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-semibold text-center mb-6">
           User Profile

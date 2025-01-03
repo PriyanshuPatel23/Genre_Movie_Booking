@@ -6,11 +6,11 @@ const jwtStrategy = JWT.Strategy;
 const ExtractJwt = JWT.ExtractJwt;
 
 const opts = {
-  jwtfromrequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrkey: JWT_SECRET,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: JWT_SECRET,
 };
 
-export const PassportAuth = (passport) => {
+const PassportAuth = (passport) => {
   passport.use(
     new jwtStrategy(opts, async (jwt_payload, done) => {
       const user = await User.findById(jwt_payload.id);
@@ -22,3 +22,5 @@ export const PassportAuth = (passport) => {
     })
   );
 };
+
+module.exports = PassportAuth;
