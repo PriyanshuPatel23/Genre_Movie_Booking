@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Form from "./partials/Form";
 import axios from "../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 function ChangeDetails() {
   const [user, setUser] = useState("");
 
+  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -13,6 +15,7 @@ function ChangeDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.put("/changeData", user);
+    navigate('/user')
   };
 
   const fields = [

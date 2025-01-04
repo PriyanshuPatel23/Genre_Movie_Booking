@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
 import Form from "./partials/Form";
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,6 +23,8 @@ function ResetPassword() {
       newPassword: password,
       resetToken: resetToken,
     });
+    localStorage.removeItem("token");
+    navigate("/signin")
   };
 
   const fields = [
