@@ -8,12 +8,6 @@ function Navbar() {
         <h1 className="text-[#6556CD] text-3xl font-semibold">Genre.</h1>
         <div className="hidden space-x-10 sm:flex">
           <Link to="/" className="text-white hover:text-[#6556CD] text-xl">
-            Home
-          </Link>
-          <Link
-            to="/movies"
-            className="text-white hover:text-[#6556CD] text-xl"
-          >
             Movies
           </Link>
           <Link
