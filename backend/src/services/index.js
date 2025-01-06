@@ -1,3 +1,5 @@
 module.exports = {
-    userService: require('./user-services')
-}
+  userService: require("./user-services"),
+  movieService: require("./movie-services"),
+  TheatreService: require("./theatre-service"),
+};

@@ -24,7 +24,7 @@ function ResetPassword() {
       resetToken: resetToken,
     });
     localStorage.removeItem("token");
-    navigate("/signin")
+    navigate("/signin");
   };
 
   const fields = [

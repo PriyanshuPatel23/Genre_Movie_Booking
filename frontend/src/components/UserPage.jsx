@@ -36,7 +36,6 @@ const UserPage = () => {
           User Profile
         </h2>
         <div className="space-y-4">
-          {/* Name */}
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-200">Name</p>
@@ -48,14 +47,12 @@ const UserPage = () => {
               </Link>
             </button>
           </div>
-          {/* Email */}
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-200">Email</p>
               <p className="text-lg font-medium">{user.email}</p>
             </div>
           </div>
-          {/* Password */}
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-200">Password</p>

@@ -8,12 +8,9 @@ function Form({ title, fields, buttonText, onSubmit }) {
         onSubmit={onSubmit}
         className="bg-white text-white p-8 rounded-md shadow-lg space-y-4 w-96"
       >
-        {/* Title */}
         <h2 className="text-2xl font-semibold text-[#6556CD] text-center">
           {title}
         </h2>
-
-        {/* Input Fields */}
         {fields.map((field, index) => (
           <input
             key={index}
@@ -26,7 +23,6 @@ function Form({ title, fields, buttonText, onSubmit }) {
           />
         ))}
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full p-2 bg-[#6556CD] text-white rounded-md hover:bg-[#5048a5]"
@@ -34,7 +30,6 @@ function Form({ title, fields, buttonText, onSubmit }) {
           {buttonText}
         </button>
 
-        {/* Conditional Links */}
         <p className="text-black text-center">
           {title === "Signin" ? (
             <>
@@ -53,7 +48,6 @@ function Form({ title, fields, buttonText, onSubmit }) {
           )}
         </p>
 
-        {/* Forgot Password Link */}
         {title === "Signin" && (
           <p className="text-black text-center">
             Forgot your password?{" "}

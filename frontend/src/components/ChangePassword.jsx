@@ -24,7 +24,6 @@ function ChangePassword() {
         newPassword: password.newPassword,
       };
       const response = await axios.put("/changePassword", payload);
-      console.log("Password changed successfully:", response);
       localStorage.removeItem("token");
       navigate("/signin");
     } catch (error) {
