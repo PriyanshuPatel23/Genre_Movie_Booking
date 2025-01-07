@@ -5,7 +5,10 @@ const {
   movieController,
   theatreController,
 } = require("../../controllers/index");
-const { authMiddleware } = require("../../middleware/auth-middleware");
+const {
+  authMiddleware,
+  roleMiddleware,
+} = require("../../middleware/auth-middleware");
 
 const router = express.Router();
 
@@ -19,18 +22,48 @@ router.post("/resetpassword", userController.handleResetPassword);
 
 // Movie routes
 
-router.post("/movie", movieController.createMovie);
+router.post(
+  "/movie",
+  authMiddleware,
+  roleMiddleware,
+  movieController.createMovie
+);
 router.get("/movie", movieController.getMovies);
 router.get("/movie/:id", movieController.getMovieById);
-router.put("/movie/:id", movieController.updateMovie);
-router.delete("/movie/:id", movieController.deleteMovie);
+router.put(
+  "/movie/:id",
+  authMiddleware,
+  roleMiddleware,
+  movieController.updateMovie
+);
+router.delete(
+  "/movie/:id",
+  authMiddleware,
+  roleMiddleware,
+  movieController.deleteMovie
+);
 
 // Theatre routes
 
-router.post("/theatre", theatreController.createTheatres);
+router.post(
+  "/theatre",
+  authMiddleware,
+  roleMiddleware,
+  theatreController.createTheatres
+);
 router.get("/theatre", theatreController.getTheatres);
 router.get("/theatre/:id", theatreController.getTheatreById);
-router.put("/theatre/:id", theatreController.updateTheatreById);
-router.delete("/theatre/:id", theatreController.deleteTheatreById);
+router.put(
+  "/theatre/:id",
+  authMiddleware,
+  roleMiddleware,
+  theatreController.updateTheatreById
+);
+router.delete(
+  "/theatre/:id",
+  authMiddleware,
+  roleMiddleware,
+  theatreController.deleteTheatreById
+);
 
 module.exports = router;

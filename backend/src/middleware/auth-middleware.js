@@ -10,13 +10,13 @@ const authMiddleware = (req, res, next) => {
   })(req, res, next);
 };
 
-const roleMiddleware = (allowedRoles) => (req, res, next) => {
+const roleMiddleware = (req, res, next) => {
   try {
-    const userRole = req.user.role;
-    if (!allowedRoles.includes(userRole)) {
-      return res.status(403).json({
-        message: "You are not authorized to perform this action",
-      });
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    if (!req.user.isAdmin) {
+      return res.status(403).json({ message: "Access denied. Admins only." });
     }
     next();
   } catch (error) {

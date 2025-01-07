@@ -7,15 +7,17 @@ import ChangePassword from "../components/ChangePassword";
 import { Routes, Route } from "react-router-dom";
 import RequestReset from "../components/requestReset";
 import ResetPassword from "../components/ResetPassword";
-import Dashboard from "../components/admin/Dashboard";
+import Movies from "../components/Movies";
+import MovieDetails from "../components/MovieDetails";
+import AdminDashboard from "../components/admin/AdminDashboard";
 import ManageMovies from "../components/admin/ManageMovies";
-import ManageTheatres from "../components/admin/ManageTheatres";
-import AddMovie from "../components/admin/AddMovie";
-import AddTheatre from "../components/admin/AddTheatre";
+import EditMovie from "../components/admin/editMovie";
 
 function Routing() {
   return (
     <Routes>
+      <Route path="/" element={<Movies />} />
+      <Route path="/movie/:id" element={<MovieDetails />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/user" element={<UserPage />} />
@@ -23,11 +25,9 @@ function Routing() {
       <Route path="/changedetails" element={<ChangeDetails />} />
       <Route path="/requestmail" element={<RequestReset />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
-      <Route path="/admin/dashboard" element={<Dashboard />} />
+      <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin/managemovies" element={<ManageMovies />} />
-      <Route path="/admin/managetheatres" element={<ManageTheatres />} />
-      <Route path="/admin/addmovie" element={<AddMovie />} />
-      <Route path="/admin/addtheatre" element={<AddTheatre />} />
+      <Route path="/admin/editmovie/:id" element={<EditMovie />} />
     </Routes>
   );
 }

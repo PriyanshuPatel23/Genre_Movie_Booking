@@ -4,11 +4,7 @@ const userservice = new userService();
 
 const signup = async (req, res) => {
   try {
-    const user = await userservice.signup({
-      email: req.body.email,
-      password: req.body.password,
-      name: req.body.name,
-    });
+    const user = await userservice.signup(req.body);
     return res.status(200).json({
       message: "User created successfully",
       data: user,
