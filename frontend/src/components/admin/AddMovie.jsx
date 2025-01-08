@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
-import {
-  asyncgetbyid,
-  asyncUpdateMovie,
-} from "../../store/actions/MovieActions";
-import { useParams, useNavigate } from "react-router-dom";
+import { asyncaddMovie } from "../../store/actions/MovieActions";
 
-function EditMovie() {
+function AddMovie() {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const { theatre, loading: theatreLoading } = useSelector(
-    (state) => state.theatre
-  );
-  const { movie, loading: movieLoading } = useSelector((state) => state.movie);
+  const { theatre } = useSelector((state) => state.theatre);
 
   const [selectedTheatre, setSelectedTheatre] = useState("");
   const [showtime, setShowtime] = useState("");
@@ -31,22 +21,7 @@ function EditMovie() {
 
   useEffect(() => {
     dispatch(asyncLoadTheatre());
-    dispatch(asyncgetbyid(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    if (movie) {
-      setFormData({
-        title: movie.title || "",
-        genre: movie.genre || "",
-        description: movie.description || "",
-        posterUrl: movie.posterUrl || "",
-        theatres: movie.theatres || [],
-        showtimes: movie.showtimes || [],
-      });
-    }
-    setShowtimesArray(movie.showtimes);
-  }, [movie]);
+  }, [dispatch]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -97,17 +72,8 @@ function EditMovie() {
       alert("Please fill out all required fields and add showtimes.");
       return;
     }
-    dispatch(asyncUpdateMovie(id, formData));
-    navigate("/");
+    dispatch(asyncaddMovie(formData));
   };
-
-  if (movieLoading || theatreLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-[#F9F7F7]">
-        <div>Loading...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex justify-center items-center h-screen bg-[#1F1E24]">
@@ -116,14 +82,13 @@ function EditMovie() {
         className="bg-white text-white p-8 rounded-md shadow-lg space-y-4 w-96"
       >
         <h2 className="text-2xl font-semibold text-[#6556CD] text-center">
-          Edit Movie
+          Add Movie
         </h2>
 
         <input
           type="text"
           name="title"
           placeholder="Title"
-          value={formData.title || ""}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />
@@ -131,14 +96,12 @@ function EditMovie() {
           type="text"
           name="genre"
           placeholder="Genre"
-          value={formData.genre || ""}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />
         <textarea
           name="description"
           placeholder="Description"
-          value={formData.description || ""}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         ></textarea>
@@ -146,14 +109,13 @@ function EditMovie() {
           type="text"
           name="posterUrl"
           placeholder="Poster URL"
-          value={formData.posterUrl || ""}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />
 
         <select
           name="theatres"
-          value={selectedTheatre || ""}
+          value={selectedTheatre}
           onChange={handleTheatreChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         >
@@ -168,7 +130,7 @@ function EditMovie() {
         <input
           type="text"
           placeholder="Showtime (e.g., 10:30 AM, 2:00 PM)"
-          value={showtime || ""}
+          value={showtime}
           onChange={handleShowtimeChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />
@@ -201,4 +163,4 @@ function EditMovie() {
   );
 }
 
-export default EditMovie;
+export default AddMovie;

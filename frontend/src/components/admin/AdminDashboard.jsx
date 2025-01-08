@@ -39,7 +39,7 @@ const AdminDashboard = () => {
               Add Movie
             </h2>
             <Link
-              to="/add-movie"
+              to="/admin/addmovie"
               className="bg-[#6556CD] text-white py-2 px-6 rounded-lg hover:bg-[#5349b5] transition-colors"
             >
               Add New Movie

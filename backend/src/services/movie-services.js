@@ -68,7 +68,7 @@ class MovieService {
 
       const updatedMovie = await movierepo.update(
         movieId,
-        { title, genre, description, posterUrl, theatres, showtimes },
+        { title, genre, description, posterUrl },
         { new: true }
       );
 
@@ -76,37 +76,41 @@ class MovieService {
         throw new Error(`Movie with ID ${movieId} not found`);
       }
 
-      await Promise.all(
-        theatres.map(async (theatreId) => {
-          const theatre = await theatrerepo.findById(theatreId);
-          if (!theatre) {
-            throw new Error(`Theatre with ID ${theatreId} not found`);
-          }
+      // If theatres are provided, process them
+      if (theatres && Array.isArray(theatres)) {
+        await Promise.all(
+          theatres.map(async (theatreId) => {
+            const theatre = await theatrerepo.findById(theatreId);
+            if (!theatre) {
+              throw new Error(`Theatre with ID ${theatreId} not found`);
+            }
 
-          const newShowtime = showtimes.find(
-            (showtime) => showtime.theatreId.toString() === theatreId.toString()
-          );
+            const newShowtime = showtimes?.find(
+              (showtime) =>
+                showtime.theatreId.toString() === theatreId.toString()
+            );
 
-          const existingShowtime = theatre.showtimes.find(
-            (showtime) => showtime.movieId.toString() === movieId.toString()
-          );
+            const existingShowtime = theatre.showtimes.find(
+              (showtime) => showtime.movieId.toString() === movieId.toString()
+            );
 
-          if (existingShowtime) {
-            existingShowtime.time = newShowtime ? newShowtime.time : [];
-          } else if (newShowtime) {
-            theatre.showtimes.push({
-              movieId: movieId,
-              time: newShowtime.time,
-            });
-          }
+            if (existingShowtime) {
+              existingShowtime.time = newShowtime ? newShowtime.time : [];
+            } else if (newShowtime) {
+              theatre.showtimes.push({
+                movieId: movieId,
+                time: newShowtime.time,
+              });
+            }
 
-          if (!theatre.movies.includes(movieId)) {
-            theatre.movies.push(movieId);
-          }
+            if (!theatre.movies.includes(movieId)) {
+              theatre.movies.push(movieId);
+            }
 
-          await theatre.save();
-        })
-      );
+            await theatre.save();
+          })
+        );
+      }
 
       return updatedMovie;
     } catch (error) {

@@ -16,10 +16,7 @@ export const movieSlice = createSlice({
       state.movie.push(action.payload);
     },
     updatemovie: (state, action) => {
-      const index = state.movie.findIndex(
-        (movie) => movie._id === action.payload._id
-      );
-      if (index !== -1) state.movie[index] = action.payload;
+      state.movie = action.payload;
     },
     deletemovie: (state, action) => {
       state.movie = state.movie.filter((movie) => movie._id !== action.payload);

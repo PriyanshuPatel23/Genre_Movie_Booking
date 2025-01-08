@@ -11,7 +11,8 @@ import Movies from "../components/Movies";
 import MovieDetails from "../components/MovieDetails";
 import AdminDashboard from "../components/admin/AdminDashboard";
 import ManageMovies from "../components/admin/ManageMovies";
-import EditMovie from "../components/admin/editMovie";
+import EditMovie from "../components/admin/EditMovie";
+import AddMovie from "../components/admin/AddMovie";
 
 function Routing() {
   return (
@@ -28,6 +29,7 @@ function Routing() {
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin/managemovies" element={<ManageMovies />} />
       <Route path="/admin/editmovie/:id" element={<EditMovie />} />
+      <Route path="/admin/addmovie" element={<AddMovie />} />
     </Routes>
   );
 }
