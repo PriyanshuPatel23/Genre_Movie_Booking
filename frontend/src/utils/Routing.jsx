@@ -13,6 +13,9 @@ import AdminDashboard from "../components/admin/AdminDashboard";
 import ManageMovies from "../components/admin/ManageMovies";
 import EditMovie from "../components/admin/EditMovie";
 import AddMovie from "../components/admin/AddMovie";
+import ManageTheatre from "../components/admin/ManageTheatre";
+import EditTheatre from "../components/admin/EditTheatre";
+import AddTheatre from "../components/admin/AddTheatre";
 
 function Routing() {
   return (
@@ -30,6 +33,9 @@ function Routing() {
       <Route path="/admin/managemovies" element={<ManageMovies />} />
       <Route path="/admin/editmovie/:id" element={<EditMovie />} />
       <Route path="/admin/addmovie" element={<AddMovie />} />
+      <Route path="/admin/managetheatres" element={<ManageTheatre />} />
+      <Route path="/admin/edittheatre/:id" element={<EditTheatre />} />
+      <Route path="/admin/addtheatre" element={<AddTheatre />} />
     </Routes>
   );
 }

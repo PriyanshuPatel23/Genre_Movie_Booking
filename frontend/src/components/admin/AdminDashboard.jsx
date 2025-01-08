@@ -27,7 +27,7 @@ const AdminDashboard = () => {
               Manage Theatres
             </h2>
             <Link
-              to="/manage-theatres"
+              to="/admin/managetheatres"
               className="bg-[#6556CD] text-white py-2 px-6 rounded-lg hover:bg-[#5349b5] transition-colors"
             >
               View Theatres
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
               Add Theatre
             </h2>
             <Link
-              to="/add-theatre"
+              to="/admin/addtheatre"
               className="bg-[#6556CD] text-white py-2 px-6 rounded-lg hover:bg-[#5349b5] transition-colors"
             >
               Add New Theatre

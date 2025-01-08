@@ -61,10 +61,7 @@ const getTheatreById = async (req, res) => {
 
 const updateTheatreById = async (req, res) => {
   try {
-    const theatre = await theatreservice.updateTheatreById(
-      req.params.id,
-      req.body
-    );
+    const theatre = await theatreservice.updateTheatre(req.params.id, req.body);
     if (!theatre) {
       return res.status(404).json({
         success: false,

@@ -16,10 +16,7 @@ export const theatreSlice = createSlice({
       state.theatre.push(action.payload);
     },
     updatetheatre: (state, action) => {
-      const index = state.theatre.findIndex(
-        (theatre) => theatre._id === action.payload._id
-      );
-      if (index !== -1) state.theatre[index] = action.payload;
+      state.theatre = action.payload;
     },
     deletetheatre: (state, action) => {
       state.theatre = state.theatre.filter(

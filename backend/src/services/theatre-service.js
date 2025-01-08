@@ -58,7 +58,7 @@ class TheatreService {
     try {
       const { name, location, seats, movies, showtimes } = theatreData;
 
-      const updatedTheatre = await theatrerepo.findByIdAndUpdate(
+      const updatedTheatre = await theatrerepo.update(
         theatreId,
         { name, location, seats, movies, showtimes },
         { new: true }
