@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncgetbyid } from "../store/actions/MovieActions";
-import { useParams } from "react-router-dom";
+import { asyncgetmoviebyid } from "../store/actions/MovieActions";
+import { Link, useParams } from "react-router-dom";
 
 function MovieDetails() {
   const dispatch = useDispatch();
@@ -9,11 +9,11 @@ function MovieDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(asyncgetbyid(id));
+    dispatch(asyncgetmoviebyid(id));
   }, [dispatch, id]);
 
   return (
-    <div className="bg-[#1F1E24] min-h-screen text-white p-6">
+    <div className="bg-[#1F1E24] h-screen overflow-auto text-white p-6">
       <div className="flex flex-col md:flex-row gap-6 items-start">
         <img
           src={movie.posterUrl}
@@ -52,12 +52,13 @@ function MovieDetails() {
                       </h4>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {showtime.time.map((slot, index) => (
-                          <span
+                          <Link
+                            to={`/booking/${movie._id}/${theatre._id}/${slot}`}
                             key={index}
                             className="px-3 py-1 bg-[#6556CD] text-white rounded-full text-sm"
                           >
                             {slot}
-                          </span>
+                          </Link>
                         ))}
                       </div>
                     </div>

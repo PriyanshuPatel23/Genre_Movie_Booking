@@ -19,9 +19,7 @@ export const theatreSlice = createSlice({
       state.theatre = action.payload;
     },
     deletetheatre: (state, action) => {
-      state.theatre = state.theatre.filter(
-        (theatre) => theatre._id !== action.payload
-      );
+      state.theatre = action.payload;
     },
   },
 });

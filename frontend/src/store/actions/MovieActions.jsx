@@ -1,5 +1,10 @@
 import axios from "../../utils/axios";
-import { fetchmovie, fetchByid, updatemovie, createmovie } from "../reducers/MovieSlice";
+import {
+  fetchmovie,
+  fetchByid,
+  updatemovie,
+  createmovie,
+} from "../reducers/MovieSlice";
 
 export const asyncLoadMovie = () => async (dispatch, getState) => {
   try {
@@ -13,17 +18,13 @@ export const asyncLoadMovie = () => async (dispatch, getState) => {
 export const asyncaddMovie = (data) => async (dispatch, getState) => {
   try {
     const response = await axios.post("/movie", data);
-    console.log("data",data);
-    console.log("response data",response.data);
-    
-    
     dispatch(createmovie(response.data));
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-export const asyncgetbyid = (id) => async (dispatch, getState) => {
+export const asyncgetmoviebyid = (id) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`/movie/${id}`);
     dispatch(fetchByid(response.data));

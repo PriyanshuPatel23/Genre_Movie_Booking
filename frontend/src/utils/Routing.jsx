@@ -16,6 +16,9 @@ import AddMovie from "../components/admin/AddMovie";
 import ManageTheatre from "../components/admin/ManageTheatre";
 import EditTheatre from "../components/admin/EditTheatre";
 import AddTheatre from "../components/admin/AddTheatre";
+import Booking from "../components/Booking";
+import ThankYouPage from "../components/partials/ThankYouPage";
+import Ticket from "../components/Ticket";
 
 function Routing() {
   return (
@@ -36,6 +39,12 @@ function Routing() {
       <Route path="/admin/managetheatres" element={<ManageTheatre />} />
       <Route path="/admin/edittheatre/:id" element={<EditTheatre />} />
       <Route path="/admin/addtheatre" element={<AddTheatre />} />
+      <Route
+        path="/booking/:movieId/:theatreId/:showtime"
+        element={<Booking />}
+      />
+      <Route path="/thanks" element={<ThankYouPage />} />
+      <Route path="/ticket/:id" element={<Ticket />} />
     </Routes>
   );
 }

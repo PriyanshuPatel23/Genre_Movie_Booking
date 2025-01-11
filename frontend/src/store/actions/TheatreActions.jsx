@@ -35,7 +35,6 @@ export const asyncUpdateTheatre = (id, data) => async (dispatch, getState) => {
 export const asyncAddTheatre = (data) => async (dispatch, getState) => {
   try {
     const response = await axios.post(`/theatre`, data);
-    console.log(response.data.theatre);
     dispatch(fetchtheatre(response.data));
   } catch (error) {
     console.error(error);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
 import {
-  asyncgetbyid,
+  asyncgetmoviebyid,
   asyncUpdateMovie,
 } from "../../store/actions/MovieActions";
 import { useParams, useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ function EditMovie() {
 
   useEffect(() => {
     dispatch(asyncLoadTheatre());
-    dispatch(asyncgetbyid(id));
+    dispatch(asyncgetmoviebyid(id));
   }, [dispatch, id]);
 
   useEffect(() => {

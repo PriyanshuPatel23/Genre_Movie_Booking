@@ -1,5 +1,5 @@
-const { movieRepository, TheatreRepository } = require("../Repository/index");
-const movierepo = new movieRepository();
+const { MovieRepository, TheatreRepository } = require("../Repository/index");
+const movierepo = new MovieRepository();
 const theatrerepo = new TheatreRepository();
 
 class MovieService {
@@ -76,7 +76,6 @@ class MovieService {
         throw new Error(`Movie with ID ${movieId} not found`);
       }
 
-      // If theatres are provided, process them
       if (theatres && Array.isArray(theatres)) {
         await Promise.all(
           theatres.map(async (theatreId) => {

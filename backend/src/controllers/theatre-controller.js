@@ -18,13 +18,14 @@ const getTheatres = async (req, res) => {
 
 const createTheatres = async (req, res) => {
   try {
-    const { name, location, seats, movies, showtimes } = req.body;
+    const { name, location, seats, movies, showtimes, price } = req.body;
     const theatre = await theatreservice.createTheatre({
       name,
       location,
       seats,
       movies,
       showtimes,
+      price,
     });
     return res.status(201).json({
       success: true,

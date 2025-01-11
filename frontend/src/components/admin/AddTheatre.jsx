@@ -11,6 +11,7 @@ function AddTheatre() {
     name: "",
     location: "",
     seats: "",
+    price: "",
   });
 
   const handleChange = (event) => {
@@ -55,6 +56,14 @@ function AddTheatre() {
           name="seats"
           placeholder="Seats"
           value={formData.seats}
+          onChange={handleChange}
+          className="w-full p-2 bg-[#2A2933] text-white rounded-md"
+        />
+        <input
+          type="number"
+          name="price"
+          placeholder="Price"
+          value={formData.price}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />

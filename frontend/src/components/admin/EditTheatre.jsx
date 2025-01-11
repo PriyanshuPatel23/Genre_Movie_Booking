@@ -13,6 +13,8 @@ function EditTheatre() {
     name: "",
     location: "",
     seats: "",
+    price: "",
+    movies: [],
   });
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,6 +40,7 @@ function EditTheatre() {
         name: theatre.name || "",
         location: theatre.location || "",
         seats: theatre.seats || "",
+        price: theatre.price || "",
         movies: theatre.movies || [],
       });
     }
@@ -73,6 +76,14 @@ function EditTheatre() {
           name="seats"
           placeholder="Seats"
           value={formData.seats || ""}
+          onChange={handleChange}
+          className="w-full p-2 bg-[#2A2933] text-white rounded-md"
+        />
+        <input
+          type="text"
+          name="price"
+          placeholder="Price"
+          value={formData.price || ""}
           onChange={handleChange}
           className="w-full p-2 bg-[#2A2933] text-white rounded-md"
         />

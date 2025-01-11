@@ -1,5 +1,6 @@
 module.exports = {
   userRepository: require("./user-repository"),
-  movieRepository: require("./movie-repository"),
+  MovieRepository: require("./movie-repository"),
   TheatreRepository: require("./theatre-repository"),
+  BookingRepository: require("./booking-repository"),
 };

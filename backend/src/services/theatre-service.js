@@ -1,11 +1,11 @@
-const { TheatreRepository, movieRepository } = require("../Repository/index");
+const { TheatreRepository, MovieRepository } = require("../Repository/index");
 const theatrerepo = new TheatreRepository();
-const movierepository = new movieRepository();
+const movierepository = new MovieRepository();
 
 class TheatreService {
   async createTheatre(theatreData) {
     try {
-      const { name, location, seats, movies, showtimes } = theatreData;
+      const { name, location, seats, movies, showtimes, price } = theatreData;
 
       const movieArray = Array.isArray(movies) ? movies : [];
       const showArray = Array.isArray(showtimes) ? showtimes : [];
@@ -16,6 +16,7 @@ class TheatreService {
         seats,
         movies: movieArray,
         showtimes: showArray,
+        price,
       });
 
       await Promise.all(
@@ -56,11 +57,11 @@ class TheatreService {
 
   async updateTheatre(theatreId, theatreData) {
     try {
-      const { name, location, seats, movies, showtimes } = theatreData;
+      const { name, location, seats, movies, showtimes, price } = theatreData;
 
       const updatedTheatre = await theatrerepo.update(
         theatreId,
-        { name, location, seats, movies, showtimes },
+        { name, location, seats, movies, showtimes, price },
         { new: true }
       );
 
