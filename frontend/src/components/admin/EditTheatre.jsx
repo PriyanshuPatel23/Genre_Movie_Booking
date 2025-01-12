@@ -4,6 +4,8 @@ import {
   asyncgetbyid,
   asyncUpdateTheatre,
 } from "../../store/actions/TheatreActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
+
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditTheatre() {
@@ -18,6 +20,16 @@ function EditTheatre() {
   });
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { asyncgetbyid } from "../store/actions/TheatreActions";
 import { asyncgetmoviebyid } from "../store/actions/MovieActions";
 import { asynccreateBooking } from "../store/actions/BookingActions";
+import { asyncisAuthenticated } from "../store/actions/UserActions";
+import RestrictBackNavigation from "./partials/RestrictBackNavigation";
 
 function Booking() {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ function Booking() {
   const { theatre } = useSelector((state) => state.theatre);
   const { movie } = useSelector((state) => state.movie);
   const { booking } = useSelector((state) => state.booking);
+  const { user } = useSelector((state) => state.user);
   const [seatsSelected, setSeatsSelected] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [seatPrice, setSeatPrice] = useState(10);
@@ -21,6 +24,10 @@ function Booking() {
   useEffect(() => {
     dispatch(asyncgetmoviebyid(movieId));
     dispatch(asyncgetbyid(theatreId));
+    dispatch(asyncisAuthenticated());
+    if (!user) {
+      navigate("/signin");
+    }
   }, [dispatch, movieId, theatreId]);
 
   useEffect(() => {
@@ -125,6 +132,7 @@ function Booking() {
           </p>
         </div>
       </div>
+      <RestrictBackNavigation />
     </div>
   );
 }

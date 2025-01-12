@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 import {
   asyncgetmoviebyid,
   asyncUpdateMovie,
@@ -63,6 +64,16 @@ function EditMovie() {
   const handleShowtimeChange = (event) => {
     setShowtime(event.target.value);
   };
+
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
 
   const addShowtime = () => {
     if (!selectedTheatre || !showtime) {

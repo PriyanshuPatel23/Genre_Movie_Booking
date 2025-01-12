@@ -1,7 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 
 const AdminDashboard = () => {
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
   return (
     <div className="bg-[#1F1E24] h-screen p-6">
       <div className="max-w-screen-lg mx-auto text-white">

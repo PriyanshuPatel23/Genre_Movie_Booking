@@ -1,4 +1,5 @@
 import React from "react";
+import RestrictBackNavigation from "../partials/RestrictBackNavigation";
 
 const ThankYouPage = () => {
   return (
@@ -8,6 +9,7 @@ const ThankYouPage = () => {
       <p className="text-white font-bold text-3xl">
         Your ticket details have been sent to your email.
       </p>
+      <RestrictBackNavigation />
     </div>
   );
 };

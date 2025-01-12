@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncgetBookingById } from "../store/actions/BookingActions";
+import RestrictBackNavigation from "./partials/RestrictBackNavigation";
 
 const Ticket = () => {
   const { id } = useParams();
@@ -33,7 +34,6 @@ const Ticket = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {/* Movie Poster & Title */}
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
       >
@@ -56,7 +56,6 @@ const Ticket = () => {
         </div>
       </div>
 
-      {/* Showtime Details */}
       <div
         style={{
           borderTop: "1px solid #A5A5A5",
@@ -76,7 +75,6 @@ const Ticket = () => {
         </p>
       </div>
 
-      {/* Seat & Booking Info */}
       <div style={{ marginBottom: "20px" }}>
         <p style={{ margin: "5px 0" }}>
           Seats: <b>{booking.data.seats || "N/A"}</b>
@@ -89,7 +87,6 @@ const Ticket = () => {
         </p>
       </div>
 
-      {/* Payment Details */}
       <div
         style={{
           borderTop: "1px solid #A5A5A5",
@@ -103,6 +100,7 @@ const Ticket = () => {
           </span>
         </p>
       </div>
+      <RestrictBackNavigation />
     </div>
   );
 };

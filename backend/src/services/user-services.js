@@ -16,6 +16,15 @@ class userService {
       console.log(error);
     }
   }
+
+  async isAdmin(id) {
+    try {
+      const user = userrepository.findUser(id);
+      return user.isAdmin;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async login(data) {
     try {
       const user = await userrepository.login(data.email);
@@ -108,6 +117,19 @@ class userService {
       return { message: "Password reset successfully" };
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async isAuthenticated(userid) {
+    try {
+      const user = await userrepository.findUser(userid);
+      if (!user) {
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
   }
 }

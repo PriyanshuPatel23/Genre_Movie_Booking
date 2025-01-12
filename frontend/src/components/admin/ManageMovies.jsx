@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadMovie } from "../../store/actions/MovieActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -11,6 +12,16 @@ const ManageMovies = () => {
   useEffect(() => {
     dispatch(asyncLoadMovie());
   }, [dispatch]);
+
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
 
   const handleEdit = (id) => {
     console.log("Edit movie with id:", id);

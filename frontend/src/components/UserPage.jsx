@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaUserEdit, FaKey } from "react-icons/fa";
 import axios from "../utils/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -20,6 +21,11 @@ const UserPage = () => {
     };
     fetchProfile();
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -65,6 +71,13 @@ const UserPage = () => {
             </button>
           </div>
         </div>
+        <button
+          type="submit"
+          className="w-full p-2 bg-[#6556CD] text-white rounded-md hover:bg-[#5048a5]"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

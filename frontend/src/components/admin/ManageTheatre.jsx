@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -10,6 +11,16 @@ const ManageTheatre = () => {
 
   useEffect(() => {
     dispatch(asyncLoadTheatre());
+  }, []);
+
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
   }, []);
 
   const handleEdit = (id) => {

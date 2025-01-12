@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { asyncAddTheatre } from "../../store/actions/TheatreActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 import { useNavigate } from "react-router-dom";
 
 function AddTheatre() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     name: "",

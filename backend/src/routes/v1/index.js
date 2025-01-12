@@ -10,7 +10,6 @@ const {
   authMiddleware,
   roleMiddleware,
 } = require("../../middleware/auth-middleware");
-const { authenticate } = require("passport");
 
 const router = express.Router();
 
@@ -21,6 +20,8 @@ router.put("/changePassword", authMiddleware, userController.updatePassword);
 router.put("/changeData", authMiddleware, userController.updateUser);
 router.post("/requestpasswordreset", userController.handleRequestPasswordReset);
 router.post("/resetpassword", userController.handleResetPassword);
+router.get("/isAuthenticated", authMiddleware, userController.isAuthenticated);
+router.get("/isAdmin", authMiddleware, userController.isAuthenticated);
 
 // Movie routes
 

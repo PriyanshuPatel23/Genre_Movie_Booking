@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
 import { asyncaddMovie } from "../../store/actions/MovieActions";
+import { asyncisAdmin } from "../../store/actions/UserActions";
 
 function AddMovie() {
   const dispatch = useDispatch();
@@ -18,6 +19,15 @@ function AddMovie() {
     theatres: [],
     showtimes: [],
   });
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(asyncLoadTheatre());
