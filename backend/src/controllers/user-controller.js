@@ -192,4 +192,5 @@ module.exports = {
   handleRequestPasswordReset,
   handleResetPassword,
   isAuthenticated,
+  isAdmin,
 };

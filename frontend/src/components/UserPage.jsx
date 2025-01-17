@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FaUserEdit, FaKey } from "react-icons/fa";
 import axios from "../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
+import { asyncisAdmin } from "../store/actions/UserActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
+  const [User, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -22,6 +26,13 @@ const UserPage = () => {
     fetchProfile();
   }, []);
 
+  useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (user) {
+      navigate("/admin");
+    }
+  });
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -31,7 +42,7 @@ const UserPage = () => {
     return <p>Loading...</p>;
   }
 
-  if (!user) {
+  if (!User) {
     return <p>User not found. Please log in again.</p>;
   }
 
@@ -45,7 +56,7 @@ const UserPage = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-200">Name</p>
-              <p className="text-lg font-medium">{user.name}</p>
+              <p className="text-lg font-medium">{User.name}</p>
             </div>
             <button className="text-white hover:text-gray-300">
               <Link to="/changedetails">
@@ -56,7 +67,7 @@ const UserPage = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-200">Email</p>
-              <p className="text-lg font-medium">{user.email}</p>
+              <p className="text-lg font-medium">{User.email}</p>
             </div>
           </div>
           <div className="flex justify-between items-center">

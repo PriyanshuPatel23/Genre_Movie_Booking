@@ -19,8 +19,8 @@ export const asyncCreateUser = (data) => async (dispatch, getState) => {
 export const asyncisAuthenticated = () => async (dispatch, getState) => {
   try {
     const user = await axios.get(`/isAuthenticated`);
-    if (user.data) {
-      dispatch(isAuthenticated(user.data.user));
+    if (user) {
+      dispatch(isAuthenticated(user));
     }
   } catch (error) {
     console.log(error);
@@ -30,8 +30,8 @@ export const asyncisAuthenticated = () => async (dispatch, getState) => {
 export const asyncisAdmin = () => async (dispatch, getState) => {
   try {
     const user = await axios.get(`/isAdmin`);
-    if (user.data) {
-      dispatch(isAdmin(user.data.user));
+    if (user) {
+      dispatch(isAdmin(user));
     }
   } catch (error) {
     console.log(error);

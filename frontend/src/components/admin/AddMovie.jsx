@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadTheatre } from "../../store/actions/TheatreActions";
 import { asyncaddMovie } from "../../store/actions/MovieActions";
 import { asyncisAdmin } from "../../store/actions/UserActions";
+import { useNavigate } from "react-router-dom";
 
 function AddMovie() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { theatre } = useSelector((state) => state.theatre);
-
   const [selectedTheatre, setSelectedTheatre] = useState("");
   const [showtime, setShowtime] = useState("");
   const [showtimesArray, setShowtimesArray] = useState([]);
@@ -27,9 +28,6 @@ function AddMovie() {
       navigate("/");
       console.log("Not authorized");
     }
-  }, []);
-
-  useEffect(() => {
     dispatch(asyncLoadTheatre());
   }, [dispatch]);
 

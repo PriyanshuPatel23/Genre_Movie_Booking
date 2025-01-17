@@ -23,14 +23,6 @@ function EditTheatre() {
 
   const { user } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    dispatch(asyncisAdmin());
-    if (!user) {
-      navigate("/");
-      console.log("Not authorized");
-    }
-  }, []);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -43,6 +35,11 @@ function EditTheatre() {
   };
 
   useEffect(() => {
+    dispatch(asyncisAdmin());
+    if (!user) {
+      navigate("/");
+      console.log("Not authorized");
+    }
     dispatch(asyncgetbyid(id));
   }, []);
 
